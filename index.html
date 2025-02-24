@@ -17,7 +17,7 @@
         }
 
         .container {
-            width: 60%;
+            width: 90%;
             max-width: 400px;
             background: #1E1E1E;
             border-radius: 15px;
@@ -25,21 +25,20 @@
             color: white;
             text-align: center;
             overflow: hidden;
+            padding: 20px;
         }
 
         header {
-            background: linear-gradient(135deg, #453605, #564304);
-            padding: 35px;
-            color: black;
-            font-weight: bold;
+            background: linear-gradient(135deg, #453605, #8d6d04);
+            padding: 30px;
             position: relative;
+            display: flex;
+            justify-content: center;
         }
 
-        h1 {
-            position: absolute;
-            bottom: -35%;
-            left: 50%;
-            transform: translateX(-50%);
+        header img {
+            width: 80px;
+            height: 80px;
         }
 
         .features {
@@ -56,28 +55,20 @@
             gap: 10px;
         }
 
-        .feature h2 {
-            font-size: 16px;
-            margin: 0;
+        .feature img {
+            width: 50px;
+            height: 50px;
         }
 
         .feature p {
             font-size: 14px;
             color: #BDBDBD;
-            margin: 5px 0 0 0;
+            margin: 0;
+            text-align: left;
+            flex: 1;
         }
 
-        .banner {
-            background: #FFC400;
-            padding: 15px;
-            font-weight: bold;
-            color: black;
-            font-size: 18px;
-        }
-
-        .cta-button {
-            background: black;
-            color: #FFC400;
+        .cta-button, .free-button {
             padding: 15px;
             border: none;
             font-size: 16px;
@@ -86,7 +77,13 @@
             cursor: pointer;
             margin-top: 10px;
             transition: 0.3s;
-            width: 90%;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .cta-button {
+            background: black;
+            color: #FFC400;
         }
 
         .cta-button:hover {
@@ -95,16 +92,7 @@
 
         .free-button {
             background: #FFC400;
-            color: white;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 90%;
-            margin-top: 10px;
-            transition: 0.3s;
+            color: black;
         }
 
         .free-button:hover {
@@ -116,52 +104,76 @@
             color: #BDBDBD;
             padding: 10px;
         }
+
+        footer a {
+            color: #FFC400;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .feature {
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+            }
+
+            .feature img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .cta-button, .free-button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><img src="logo+snap.png" alt="etoile_snap" width="90" height="90"></h1>
-            <p></p>
+            <img src="logo+snap.png" alt="Logo Snapchat+">
         </header>
 
         <div class="features">
             <div class="feature">
-                <h2><img src="etoile_snap.png" alt="etoile_snap" width="90" height="90"></h2>
+                <img src="etoile_snap.png" alt="Étoile Snap">
                 <p>Ajoutez une étoile noire à votre nom affiché.</p>
             </div>
             <div class="feature">
-                <h2><img src="logosnap+.png" alt="etoile_snap" width="90" height="90"></h2>
+                <img src="logosnap+.png" alt="Snapchat+">
                 <p>Accédez à des icônes Snapchat exclusives.</p>
             </div>
             <div class="feature">
-                <h2><img src="emoji_snap.png" alt="etoile_snap" width="90" height="90"></h2>
+                <img src="emoji_snap.png" alt="Emoji Snap">
                 <p>Modifiez le fond d'écran de vos conversations.</p>
             </div>
             <div class="feature">
-                <h2><img src="crayon_snap.png" alt="etoile_snap" width="90" height="90"></h2>
+                <img src="crayon_snap.png" alt="Crayon Snap">
                 <p>Personnalisez la couleur de votre pseudo.</p>
             </div>
         </div>
 
         <button class="free-button" onclick="goToFree()">Gratuit</button>
-
-        <script>
-            function goToFree() {
-                window.location.href = "index.html";
-            }
-        </script>
-
         <button class="cta-button" onclick="showPlans()">Voir tous les forfaits</button>
 
         <footer>
             <p>Conditions et politiques d'abonnement, <a href="https://www.snap.com/terms/paid-features" target="_blank">fonctionnalités payantes</a></p>
         </footer>
     </div>
-    
+
     <script>
+        function goToFree() {
+            window.location.href = "snapchat+.html";
+        }
+
         function showPlans() {
-            window.location.href = 'https://www.snap.com/terms/paid-features';
+            window.location.href = "https://www.snap.com/terms/paid-features";
         }
     </script>
 </body>
